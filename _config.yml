@@ -1,0 +1,11 @@
+# Site settings
+title: Prototype
+email: hello@lapier.me
+description: "Prototype"
+baseurl: ""
+twitter_username: phillapier
+github_username:  plapier
+
+# Build settings
+markdown: kramdown
+permalink: pretty

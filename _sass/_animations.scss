@@ -1,0 +1,23 @@
+%animation-slide-right {
+  @include animation(slide-right 0.3s $ease-out-sine 0s forwards);
+}
+@include keyframes(slide-right) {
+  0% {
+    @include transform(translate3D(0, 0, 0));
+  }
+  100% {
+    @include transform(translate3D(80%, 0, 0));
+  }
+}
+
+%animation-slide-left {
+  @include animation(slide-left 0.3s $ease-in-sine 0s forwards);
+}
+@include keyframes(slide-left) {
+  0% {
+    @include transform(translate3D(80%, 0, 0));
+  }
+  100% {
+    @include transform(translate3D(0, 0, 0));
+  }
+}

@@ -1,0 +1,97 @@
+$menu-bg: #343233;
+
+.menu-nav {
+  margin-top: $header-height;
+  background: $menu-bg;
+  color: $base-bg-1;
+  @include position(absolute, 0 20% 0 0);
+  z-index: 0;
+
+  header {
+    background: $menu-bg;
+    border-bottom: 1px solid #262627;
+  }
+
+  nav {
+    @include transform-origin(left bottom);
+    @include transition(all 0.3s $ease-out-quad);
+
+    &.open {
+      @include transform(scale(1));
+
+      li {
+        @include transition(opacity 0.3s $ease-out-quad);
+        opacity: 1;
+
+      }
+    }
+
+    &.close {
+      @include transition-duration(0.8s);
+      @include transform(scale(0.96));
+
+      li {
+        @include transition(opacity 0.3s $ease-out-quad);
+        opacity: 0.4;
+
+        &.active {
+          @include transition-delay(1s);
+        }
+      }
+    }
+  }
+
+  ol {
+    margin: 32px * 0.5;
+
+    li {
+      &.active {
+        background: #242324;
+        border-radius: 2px;
+
+        a {
+          color: #fff;
+        }
+
+        .icon {
+          opacity: 1;
+        }
+      }
+
+      $icons: home, trips, guide, flights, hotels, circles;
+      @each $icon in $icons {
+        &[data-id='#{$icon}'] .icon {
+          background: url("../images/#{$icon}.svg") no-repeat;
+          background-position: center;
+        }
+      }
+
+      a {
+        @include align-items(center);
+        color: #bcbec0;
+        cursor: pointer;
+        @include display(flex);
+        font-size: 14px;
+        font-weight: bold;
+        height: 96px * 0.5;
+        padding-left: 25px * 0.5;
+        text-shadow: 0 1px 0 #242324;
+      }
+
+      span {
+        display: block;
+        @include flex(1);
+
+        &:nth-of-type(2) {
+          margin-left: 30px;
+        }
+      }
+
+      .icon {
+        max-width: 24px;
+        height: 24px;
+        opacity: 0.7;
+      }
+    }
+  }
+}

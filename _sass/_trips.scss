@@ -1,0 +1,65 @@
+.trip {
+  $padding: 15px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px darken($base-bg-2, 8%);
+  @include clearfix;
+  height: 180px * 0.5;
+  margin: 10px 8px;
+  font-size: 14px;
+  padding: $padding;
+
+  a {
+    color: $base-font-color;
+  }
+
+  h2 {
+    font-size: 1em;
+    margin-bottom: 0.2em;
+  }
+
+  p {
+    color: #9a9a9a;
+    margin: 0;
+
+    &.locations {
+      color: #ddd;
+      text-transform: uppercase;
+    }
+  }
+
+  .image {
+    background: #f9f9f9;
+    box-shadow: inset 0 0 0 1px #ececec;
+    float: left;
+    margin-right: 15px;
+    @include size(60px);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+    $images: virgin, sax, skydeck;
+    @each $image in $images {
+      &.#{$image} {
+        background-image: url('../images/#{$image}.png');
+        @if $image == "sax" {
+          background-color: #000;
+        }
+
+        @if $image == "skydeck" {
+          background-size: 160%;
+          background-position: top right;
+        }
+      }
+    }
+  }
+
+  .details {
+    float: left;
+  }
+
+  .arrow-icon {
+    position: relative;
+    top: 2px;
+    margin: 0 4px;
+  }
+}

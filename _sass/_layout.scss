@@ -1,0 +1,123 @@
+$header-height: 122px * 0.5;
+$base-bg-1: #eee;
+$base-bg-2: #f5f5f5;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #fff;
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+
+  ::selection {
+    background: hsla(0, 0%, 100%, 0.2);
+  }
+
+  &.prevent-scroll {
+    position: fixed;
+  }
+}
+
+.wrapper {
+  background: #fff;
+  margin: 0 auto;
+  overflow: hidden;
+  min-width: 320px;
+}
+
+.main {
+  will-change: transform;
+  background: $base-bg-2;
+  overflow-y: scroll;
+  @include position(absolute, 0 0 0 0);
+  z-index: 2;
+
+  &:not(.animate) {
+    @include transition(transform 0.25s $ease-out-sine);
+  }
+
+  &.drag {
+    @include transition(transform 0.0s $ease-out-quad);
+  }
+
+  &.slide-right {
+    @include transform(translate3D(80%, 0, 0));
+    overflow: hidden;
+
+    &.animate {
+      @extend %animation-slide-right;
+    }
+
+    .menu-button {
+      pointer-events: none;
+    }
+  }
+
+  &.slide-left {
+    @include transform(translate3D(0, 0, 0));
+
+    &.animate {
+      @extend %animation-slide-left;
+    }
+  }
+
+  > section {
+    display: none;
+    padding-top: $header-height;
+
+    &.active {
+      display: block;
+    }
+  }
+}
+
+header.primary {
+  @include align-items(center);
+  background: $base-bg-1;
+  border-bottom: 1px solid darken($base-bg-1, 10%);
+  @include display(flex);
+  height: $header-height;
+  padding: 25px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  a {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    @include flex(1);
+    margin-top: 2px;
+
+    &.menu-button {
+      background-image: url('../images/menu.svg');
+      height: 13px;
+      margin-right: 20px;
+      max-width: 20px;
+    }
+
+    &.list {
+      background-image: url('../images/list.svg');
+      @include size(17px 14px);
+      max-width: 17px;
+    }
+
+    &.grid {
+      background-image: url('../images/grid.svg');
+      margin-left: 42px;
+      max-width: 3px;
+      @include size(3px 13px);
+    }
+  }
+
+  h1 {
+    @include flex(1);
+    font-size: 20px;
+    font-weight: 500;
+  }
+}
+
